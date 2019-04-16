@@ -1,7 +1,9 @@
 version: '2'
 services:
-  sqlite3:
-    image: nouchka/sqlite3:latest
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
     volumes:
       - ./db/:/root/db/
   zookeeper:
@@ -28,7 +30,7 @@ services:
     ports:
       - "3000:3000"
     links:
-      - sqlite3
+      - db
       - kafka
     volumes:
-      - .:/myapp
+      - .:/sample-kafka-app
