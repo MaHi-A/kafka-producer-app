@@ -25,6 +25,8 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
   web:
+    tty: true
+    stdin_open: true
     build: .
     command: bin/rails server --port 3000 --binding 0.0.0.0
     ports:
@@ -33,4 +35,4 @@ services:
       - db
       - kafka
     volumes:
-      - .:/sample-kafka-app
+      - .:/kafka-producer-app
