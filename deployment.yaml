@@ -1,0 +1,18 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: kafka-producer-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: kafka-producer-app  
+  replicas: 2 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: kafka-producer-app
+    spec:
+      containers:
+      - name: kafka-producer-app
+        image: anethalamahesh/kafka-producer-app_web:latest
+        command: [ "/bin/bash", "-ce", "tail -f /dev/null" ]
